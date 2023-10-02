@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+//Handles most backend processes
 public class operational {
     public static boolean[] PC;
     public static boolean[] MAR;
@@ -151,6 +152,7 @@ public class operational {
         //Halt program operation
         if(opCode == 0){
             System.out.println("Halt program");
+            gui.halt.setText("1");
             return true;
         }
 
@@ -210,12 +212,14 @@ public class operational {
 
     }
 
+    //Runs through a single step in the program
     public static void SS(){
         int address = operational.binToDec(PC);
         decodeOpcode(memory[address].toString());
         operational.increment(PC);
     }
 
+    //Runs through all steps in the program
     public static void Run(){
         int address = operational.binToDec(PC);
         while(!decodeOpcode(memory[address].toString())){
@@ -224,6 +228,7 @@ public class operational {
         }
     }
 
+    //Loads in the IPL.txt file to load in the program
     public static void Init(){
         File file = new File("./ipl.txt");
         String line;

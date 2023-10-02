@@ -5,9 +5,11 @@ import java.awt.*;
 
 class gui{
     //Create textboxes
-    public static JTextField GPR0, GPR1, GPR2, GPR3, IXR1, IXR2, IXR3, PC, MAR, MBR, IR, MFR, PRIV, input;
+    public static JTextField GPR0, GPR1, GPR2, GPR3, IXR1, IXR2, IXR3, PC, MAR, MBR, IR, MFR, PRIV, input, halt;
 
+    //Creates the gui, and starts the program
     public static void start(){
+        //instantiate our variables
         operational.PC = new boolean[12];
         operational.MAR = new boolean[12];
         operational.MBR = new word();
@@ -29,6 +31,7 @@ class gui{
         index.X2 = new word();
         index.X3 = new word();
 
+        //Create the JFrame window
         JFrame frame = new JFrame("CISC");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200,700);
@@ -37,7 +40,7 @@ class gui{
         frame.setLayout(new GridLayout(8,3));
         
 
-        //4 GPRs
+        //4 GPRs (Labels, values, ld buttons)
         JLabel GPR0L = new JLabel("GPR0");
         frame.add(GPR0L);
         GPR0 = new JTextField(gpr.R0.toString());
@@ -75,7 +78,7 @@ class gui{
         GPR3B.addActionListener(e -> GPR3BPressed());
 
 
-        //3 IXRs
+        //3 IXRs (Labels, values, ld buttons)
         JLabel IXR1L = new JLabel("IXR1");
         frame.add(IXR1L);
         IXR1 = new JTextField(index.X1.toString());
@@ -103,7 +106,7 @@ class gui{
         frame.add(IXR3B);
         IXR3B.addActionListener(e -> IXR3BPressed());
 
-        //PC
+        //PC (Label, value, ld button)
         JLabel PCL = new JLabel("PC");
         frame.add(PCL);
         PC = new JTextField("000000000000");
@@ -113,7 +116,7 @@ class gui{
         frame.add(PCB);
         PCB.addActionListener(e -> PCBPressed());
 
-        //MAR
+        //MAR (Label, value, ld button)
         JLabel MARL = new JLabel("MAR");
         frame.add(MARL);
         MAR = new JTextField("000000000000");
@@ -123,7 +126,7 @@ class gui{
         frame.add(MARB);
         MARB.addActionListener(e -> MARBPressed());
 
-        //MBR
+        //MBR (Label, value, ld button)
         JLabel MBRL = new JLabel("MBR");
         frame.add(MBRL);
         MBR = new JTextField("0000000000000000");
@@ -133,21 +136,21 @@ class gui{
         frame.add(MBRB);
         MBRB.addActionListener(e -> MBRBPressed());
 
-        //IR
+        //IR (Label, value)
         JLabel IRL = new JLabel("IR");
         frame.add(IRL);
         IR = new JTextField("0000000000000000");
         IR.setEditable(false);
         frame.add(IR);
 
-        //MFR
+        //MFR (Label, value)
         JLabel MFRL = new JLabel("MFR");
         frame.add(MFRL);
         MFR = new JTextField("0000");
         MFR.setEditable(false);
         frame.add(MFR);
 
-        //Privileged
+        //Privileged (Label, value)
         JLabel PRIVL = new JLabel("Privileged");
         frame.add(PRIVL);
         PRIV = new JTextField("0");
@@ -194,6 +197,11 @@ class gui{
         frame.add(RunB);
         RunB.addActionListener(e -> RunBPressed());
 
+        JLabel haltL = new JLabel("Halt");
+        frame.add(haltL);
+        halt = new JTextField("0");
+        halt.setEditable(false);
+        frame.add(halt);
 
         //Display Window
         frame.setVisible(true);

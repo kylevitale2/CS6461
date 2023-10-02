@@ -1,7 +1,9 @@
 public class word {
     public boolean[] value;
 
-    //empty constructor -- returns empty word
+    /*
+     * Constructors to handle different inputs for creating a word object
+     */
     public word(){
         value = new boolean[16];
     }
@@ -33,6 +35,9 @@ public class word {
                 value[i] = a[i];
     }
 
+    /*
+     * Prints out the string of the word
+     */
     public String toString(){
         String val = "";
         for(int i = 0; i<value.length; i++)
@@ -40,10 +45,16 @@ public class word {
         return val;
     }
 
+    /*
+     * Returns boolean array representation of word
+     */
     public boolean[] toBitArray(){
         return value;
     }
 
+    /*
+     * Deeply replaces the word
+     */
     public void overWrite(word replacement){
         boolean[] replace = replacement.toBitArray();
         for(int i = 0; i<16; i++)
