@@ -7,10 +7,6 @@ class gui{
     //Create textboxes
     public static JTextField GPR0, GPR1, GPR2, GPR3, IXR1, IXR2, IXR3, PC, MAR, MBR, IR, MFR, PRIV, input;
 
-    public static void main(String args[]){
-        start();
-    }
-
     public static void start(){
         operational.PC = new boolean[12];
         operational.MAR = new boolean[12];
@@ -199,13 +195,11 @@ class gui{
         RunB.addActionListener(e -> RunBPressed());
 
 
-
-
-
         //Display Window
         frame.setVisible(true);
     }
 
+    //Validates that the string input is in the correct format
     public static boolean validInputWord(String inText){
         if(inText.length() != 16)
             return false;
@@ -355,6 +349,7 @@ class gui{
         update();
     }
 
+    //Updates the gui
     public static void update(){
         GPR0.setText(gpr.R0.toString());
         GPR1.setText(gpr.R1.toString());
