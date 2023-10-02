@@ -16,9 +16,18 @@ public class word {
                     value[i] = true;
             }
         }
+        else if(s.length() < 16){
+            boolean[] bin = operational.binaryStringToBinary(s);
+            int pos = 15;
+            for(int i = bin.length-1; i>=0; i--){
+                value[pos] = bin[i];
+                pos--;
+            }
+        }
     }
 
     public word(boolean[] a){
+        value = new boolean[16];
         if(a.length == 16)
             for(int i = 0; i<16; i++)
                 value[i] = a[i];

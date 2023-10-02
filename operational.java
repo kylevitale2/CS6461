@@ -98,7 +98,7 @@ public class operational {
     }
 
     //decode operation
-    public static void decodeOpcode(String instruction){
+    public static boolean decodeOpcode(String instruction){
         int opCode = binToDec(binaryStringToBinary(instruction.substring(0, 6)));
         int gprReg = binToDec(binaryStringToBinary(instruction.substring(6, 8)));
         int indexReg = binToDec(binaryStringToBinary(instruction.substring(8, 10)));
@@ -151,6 +151,7 @@ public class operational {
         //Halt program operation
         if(opCode == 0){
             System.out.println("Halt program");
+            return true;
         }
 
         /**
@@ -202,7 +203,10 @@ public class operational {
         //unknown operation
         else{
             System.out.println("Unknown Operation");
+            return true;
         }
+
+        return false;
 
     }
 
@@ -210,12 +214,14 @@ public class operational {
         int address = operational.binToDec(PC);
         decodeOpcode(memory[address].toString());
         operational.increment(PC);
-        gui.update();
     }
 
     public static void Run(){
         int address = operational.binToDec(PC);
-        
+        while(!decodeOpcode(memory[address].toString())){
+            operational.increment(PC);
+            address = operational.binToDec(PC);
+        }
     }
 
     public static void Init(){
@@ -230,6 +236,7 @@ public class operational {
                 System.out.println(address);
                 //System.out.println(line.length());
                 instruction = Integer.parseInt(line.substring((line.length() - 4)), 16);
+                System.out.println(instruction);
                 memory[address] = new word(Integer.toBinaryString(instruction));
                 line = br.readLine();
             }

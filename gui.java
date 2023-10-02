@@ -352,6 +352,7 @@ class gui{
     //Runs entire program
     public static void RunBPressed(){
         operational.Run();
+        update();
     }
 
     public static void update(){
